@@ -5,6 +5,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:theme="@style/Theme.AppTheme"
     tools:context="bsd.gradebook.LoginActivity">
 
     <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
@@ -21,23 +22,22 @@
             <EditText android:id="@+id/password" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/prompt_password"
                 android:imeActionId="@+id/login"
-                android:shadowColor="#0000FF"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified" android:inputType="textPassword"
                 android:maxLines="1" android:singleLine="true" />
 
-            <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
+            <Button android:id="@+id/email_sign_in_button"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
+            <!-- Login progress -->
+            <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+                android:layout_width="fill_parent" android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp" android:visibility="invisible" />
         </LinearLayout>
     </ScrollView>
-
-    <!-- Login progress -->
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
 
 </LinearLayout>
 

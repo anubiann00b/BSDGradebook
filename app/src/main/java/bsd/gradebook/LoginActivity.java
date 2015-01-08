@@ -1,13 +1,9 @@
 package bsd.gradebook;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -22,7 +18,7 @@ import android.widget.TextView;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends ActionBarActivity {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -121,6 +117,7 @@ public class LoginActivity extends Activity {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
+            showProgress(false);
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
@@ -130,31 +127,8 @@ public class LoginActivity extends Activity {
         }
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            //mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        }
     }
 
     /**
@@ -177,7 +151,7 @@ public class LoginActivity extends Activity {
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 return false;
             }
