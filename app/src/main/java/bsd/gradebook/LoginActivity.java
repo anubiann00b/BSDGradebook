@@ -3,6 +3,8 @@ package bsd.gradebook;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -13,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -128,7 +131,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void showProgress(final boolean show) {
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -137,34 +140,40 @@ public class LoginActivity extends ActionBarActivity {
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUsername;
         private final String mPassword;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
+        UserLoginTask(String username, String password) {
+            mUsername = username;
             mPassword = password;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            ConnectionManager.Response state = ConnectionManager.makeConnection(LoginActivity.this, "https://gradebook-web-api.herokuapp.com/?username=" + mUsername + "&password=" + mPassword);
 
-            try {
-                // Simulate network access.
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                return false;
+            switch (state) {
+                case BAD_CREDS:
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, R.string.bad_creds_toast, Toast.LENGTH_SHORT);
+                        }
+                    });
+                    return false;
+                case SUCCESS:
+                    return true;
+                case NETWORK_FAILURE:
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, R.string.network_failure_toast, Toast.LENGTH_SHORT);
+                        }
+                    });
+                    return false;
+                default:
+                    return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            return false;
         }
 
         @Override
@@ -176,7 +185,7 @@ public class LoginActivity extends ActionBarActivity {
                 Intent intent = new Intent(LoginActivity.this, GradebookActivity.class);
                 startActivity(intent);
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.setError(getString(R.string.error_invalid_creds));
                 mPasswordView.requestFocus();
             }
         }
