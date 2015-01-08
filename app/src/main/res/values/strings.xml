@@ -10,5 +10,6 @@
     <string name="title_section3">Section 3</string>
     <string name="network_failure_toast">Failed to connect to network.</string>
     <string name="bad_creds_toast">Invalid credentials</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

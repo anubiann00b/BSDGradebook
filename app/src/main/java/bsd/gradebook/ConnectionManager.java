@@ -6,13 +6,16 @@ import android.net.NetworkInfo;
 
 import com.google.common.io.ByteStreams;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ConnectionManager {
 
-    private static String cache;
+    public static JSONObject cache;
 
     enum Response {
         SUCCESS, BAD_CREDS, NETWORK_FAILURE;
@@ -44,7 +47,11 @@ public class ConnectionManager {
         String response = new String(ByteStreams.toByteArray(conn.getInputStream()));
 
         if (isSuccess(response)) {
-            cache = response;
+            try {
+                cache = new JSONObject(response);
+            } catch (JSONException e) {
+                return Response.NETWORK_FAILURE;
+            }
             return Response.SUCCESS;
         }
         return Response.BAD_CREDS;
