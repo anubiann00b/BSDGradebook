@@ -14,6 +14,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 import bsd.gradebook.ApplicationWrapper;
+import bsd.gradebook.ClassManager;
 import bsd.gradebook.ConnectionManager;
 import bsd.gradebook.R;
 
@@ -33,11 +34,11 @@ public class GradeViewFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.grades_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
 
-        ArrayList<String> classes = new ArrayList<>();
+        ArrayList<ClassManager> classes = new ArrayList<>();
         try {
             JSONArray courses = ConnectionManager.cache.getJSONArray("courses");
             for (int i=0;i<courses.length();i++) {
-                classes.add(courses.getJSONObject(i).getString("course") + " " + courses.getJSONObject(i).getJSONObject("firstSemester").getString("grade"));
+                classes.add(new ClassManager(courses.getJSONObject(i)));
             }
         } catch (JSONException e) {
             e.printStackTrace();
