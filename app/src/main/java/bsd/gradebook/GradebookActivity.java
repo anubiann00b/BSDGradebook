@@ -13,22 +13,14 @@ import android.view.MenuItem;
 
 import java.util.Locale;
 
+import bsd.gradebook.fragment.GradeViewFragment;
+import bsd.gradebook.fragment.GraphFragment;
+import bsd.gradebook.fragment.HomeFragment;
+
 
 public class GradebookActivity extends ActionBarActivity implements ActionBar.TabListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     ViewPager mViewPager;
 
     @Override
@@ -121,12 +113,20 @@ public class GradebookActivity extends ActionBarActivity implements ActionBar.Ta
 
         @Override
         public Fragment getItem(int position) {
-            return new GradeViewFragment();
+            switch (position) {
+                case 0:
+                    return new HomeFragment();
+                case 1:
+                    return new GradeViewFragment();
+                case 2:
+                    return new GraphFragment();
+                default:
+                    return null;
+            }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
