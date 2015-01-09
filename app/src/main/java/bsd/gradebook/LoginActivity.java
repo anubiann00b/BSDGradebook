@@ -24,13 +24,6 @@ import android.widget.Toast;
 public class LoginActivity extends ActionBarActivity {
 
     /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "a:a"
-    };
-    /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
@@ -39,7 +32,6 @@ public class LoginActivity extends ActionBarActivity {
     private EditText mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,8 +47,10 @@ public class LoginActivity extends ActionBarActivity {
 
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.email);
+        mUsernameView.setText(ApplicationWrapper.getInstance().getSharedPrefs().getString(Constants.USERNAME, ""));
 
         mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView.setText(ApplicationWrapper.getInstance().getSharedPrefs().getString(Constants.PASSWORD, ""));
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -76,7 +70,6 @@ public class LoginActivity extends ActionBarActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
 
@@ -154,20 +147,15 @@ public class LoginActivity extends ActionBarActivity {
 
             switch (state) {
                 case BAD_CREDS:
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(LoginActivity.this, R.string.bad_creds_toast, Toast.LENGTH_SHORT);
-                        }
-                    });
                     return false;
                 case SUCCESS:
+                    ApplicationWrapper.getInstance().getSharedPrefs().edit().putString(Constants.USERNAME, mUsername).putString(Constants.PASSWORD, mPassword).commit();
                     return true;
                 case NETWORK_FAILURE:
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(LoginActivity.this, R.string.network_failure_toast, Toast.LENGTH_SHORT);
+                            Toast.makeText(LoginActivity.this, R.string.network_failure_toast, Toast.LENGTH_SHORT).show();
                         }
                     });
                     return false;
