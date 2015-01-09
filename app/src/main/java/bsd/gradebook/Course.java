@@ -3,11 +3,11 @@ package bsd.gradebook;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ClassManager {
+public class Course {
 
     JSONObject classRoot;
 
-    public ClassManager(JSONObject classRoot) {
+    public Course(JSONObject classRoot) {
         this.classRoot = classRoot;
     }
 
@@ -21,6 +21,24 @@ public class ClassManager {
 
     public int getPeriod() throws JSONException {
         return classRoot.getInt("period");
+    }
+
+    public boolean isFirstSemester() {
+        try {
+            return !classRoot.getJSONObject("firstSemester").getString("grade").isEmpty();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isSecondSemester() {
+        try {
+            return !classRoot.getJSONObject("secondSemester").getString("grade").isEmpty();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public class Grade {

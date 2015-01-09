@@ -8,14 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.ArrayList;
-
 import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.ClassManager;
-import bsd.gradebook.ConnectionManager;
+import bsd.gradebook.CoursesManager;
 import bsd.gradebook.R;
 
 
@@ -34,17 +28,9 @@ public class GradeViewFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.grades_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
 
-        ArrayList<ClassManager> classes = new ArrayList<>();
-        try {
-            JSONArray courses = ConnectionManager.cache.getJSONArray("courses");
-            for (int i=0;i<courses.length();i++) {
-                classes.add(new ClassManager(courses.getJSONObject(i)));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        CoursesManager.getInstance().initialize();
 
-        recyclerView.setAdapter(new GradesViewAdapter(classes));
+        recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemesterOne()));
         return rootView;
     }
 }

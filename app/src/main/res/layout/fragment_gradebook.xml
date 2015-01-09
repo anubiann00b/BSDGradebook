@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="8dp"
+    android:paddingTop="4dp"
     tools:context="bsd.gradebook.GradebookActivity$PlaceholderFragment">
 
     <android.support.v7.widget.RecyclerView android:id="@+id/grades_list_view"

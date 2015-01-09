@@ -12,7 +12,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bsd.gradebook.ClassManager;
+import bsd.gradebook.Course;
 import bsd.gradebook.R;
 
 public class GradesViewAdapter extends RecyclerView.Adapter {
@@ -27,9 +27,9 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
         }
     }
 
-    List<ClassManager> data = new ArrayList<>();
+    List<Course> data = new ArrayList<>();
 
-    public GradesViewAdapter(List<ClassManager> data) {
+    public GradesViewAdapter(List<Course> data) {
         this.data = data;
     }
 
@@ -44,6 +44,7 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
         try {
             ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_class)).setText(data.get(position).getCourseName());
             ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_grade)).setText(data.get(position).getGrade().grade);
+            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_grade_letter)).setText(data.get(position).getGrade().letterGrade);
         } catch (JSONException e) {
             e.printStackTrace();
         }
