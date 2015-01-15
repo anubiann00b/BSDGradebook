@@ -117,7 +117,11 @@ public class GradebookActivity extends ActionBarActivity implements ActionBar.Ta
                 case 0:
                     return new HomeFragment();
                 case 1:
-                    return new GradeViewFragment();
+                    Bundle args = new Bundle();
+                    args.putBoolean(GradeViewFragment.FIRST_SEMESTER, true);
+                    GradeViewFragment gradeFrag = new GradeViewFragment();
+                    gradeFrag.setArguments(args);
+                    return gradeFrag;
                 case 2:
                     return new GraphFragment();
                 default:

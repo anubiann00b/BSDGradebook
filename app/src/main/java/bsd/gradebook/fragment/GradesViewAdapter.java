@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import bsd.gradebook.ApplicationWrapper;
 import bsd.gradebook.Course;
 import bsd.gradebook.R;
 
@@ -28,14 +30,18 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
     }
 
     List<Course> data = new ArrayList<>();
+    final View.OnClickListener onClickListener = new OnGradeClickListener();
+    RecyclerView recyclerView;
 
-    public GradesViewAdapter(List<Course> data) {
+    public GradesViewAdapter(List<Course> data, RecyclerView recyclerView) {
         this.data = data;
+        this.recyclerView = recyclerView;
     }
 
     @Override
     public GradesViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_row, parent, false);
+        view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }
 
@@ -53,5 +59,19 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    private class OnGradeClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(final View view) {
+            int itemPosition = recyclerView.getChildPosition(view);
+            Course course = data.get(itemPosition);
+            try {
+                Toast.makeText(ApplicationWrapper.getInstance(), course.getCourseName(), Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

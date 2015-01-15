@@ -18,7 +18,14 @@ import bsd.gradebook.R;
  */
 public class GradeViewFragment extends Fragment {
 
+    public static final String FIRST_SEMESTER = "FIRST_SEMESTER";
+    boolean firstSemester = true;
+
     public GradeViewFragment() {
+    }
+
+    public void setArguments(Bundle args) {
+        firstSemester = args.getBoolean(FIRST_SEMESTER, true);
     }
 
     @Override
@@ -30,7 +37,10 @@ public class GradeViewFragment extends Fragment {
 
         CoursesManager.getInstance().initialize();
 
-        recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemesterOne()));
+        if (firstSemester)
+            recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemesterOne(), recyclerView));
+        else
+            recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemesterTwo(), recyclerView));
         return rootView;
     }
 }
