@@ -50,4 +50,8 @@ public class CoursesManager {
         }
         return semesterTwoCourses;
     }
+
+    public List<Course> getSemester(boolean firstSemester) {
+        return firstSemester ? getSemesterOne() : getSemesterTwo();
+    }
 }

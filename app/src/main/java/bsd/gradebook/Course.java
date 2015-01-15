@@ -19,8 +19,13 @@ public class Course {
         return new Grade(classRoot.getJSONObject("firstSemester").getString("grade"));
     }
 
-    public int getPeriod() throws JSONException {
-        return classRoot.getInt("period");
+    public int getPeriod() {
+        try {
+            return classRoot.getInt("period");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public boolean isFirstSemester() {

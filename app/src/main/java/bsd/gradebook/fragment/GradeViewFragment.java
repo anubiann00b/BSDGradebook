@@ -36,11 +36,8 @@ public class GradeViewFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
 
         CoursesManager.getInstance().initialize();
+        recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemester(firstSemester), recyclerView, this, firstSemester));
 
-        if (firstSemester)
-            recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemesterOne(), recyclerView));
-        else
-            recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemesterTwo(), recyclerView));
         return rootView;
     }
 }
