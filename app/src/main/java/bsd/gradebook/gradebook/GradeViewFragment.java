@@ -1,4 +1,4 @@
-package bsd.gradebook.app.gradebook;
+package bsd.gradebook.gradebook;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.course.CoursesManager;
 import bsd.gradebook.R;
+import bsd.gradebook.course.CoursesManager;
 
 
 /**

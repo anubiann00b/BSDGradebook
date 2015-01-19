@@ -8,7 +8,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bsd.gradebook.app.login.ConnectionManager;
+import bsd.gradebook.login.ConnectionManager;
 
 public class CoursesManager {
 

@@ -1,4 +1,4 @@
-package bsd.gradebook.app.gradebook;
+package bsd.gradebook.gradebook;
 
 
 import android.content.Context;
@@ -15,9 +15,9 @@ import android.widget.TextView;
 import org.json.JSONException;
 
 import bsd.gradebook.ApplicationWrapper;
+import bsd.gradebook.R;
 import bsd.gradebook.course.Course;
 import bsd.gradebook.course.CoursesManager;
-import bsd.gradebook.R;
 
 public class ClassFragment extends DialogFragment {
 
