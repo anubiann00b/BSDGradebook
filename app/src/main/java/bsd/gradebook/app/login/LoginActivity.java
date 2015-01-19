@@ -80,7 +80,7 @@ public class LoginActivity extends ActionBarActivity {
 
     /**
      * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
+     * If there are form errors (invalid username, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
@@ -98,7 +98,6 @@ public class LoginActivity extends ActionBarActivity {
 
         boolean cancel = false;
         View focusView = null;
-
 
         // Check for a valid password, if the user entered one.
         if (TextUtils.isEmpty(password)) {
@@ -136,7 +135,7 @@ public class LoginActivity extends ActionBarActivity {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, Object> {
 
         private final String mUsername;
         private final String mPassword;
@@ -147,15 +146,15 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected LoginResult doInBackground(Void... params) {
             ConnectionManager.Response state = ConnectionManager.makeConnection(LoginActivity.this, "https://gradebook-web-api.herokuapp.com/?username=" + mUsername + "&password=" + mPassword);
 
             switch (state) {
                 case BAD_CREDS:
-                    return false;
+                    return new LoginResult(false, "Invalid credentials");
                 case SUCCESS:
                     ApplicationWrapper.getInstance().getSharedPrefs().edit().putString(Constants.USERNAME, mUsername).putString(Constants.PASSWORD, mPassword).commit();
-                    return true;
+                    return new LoginResult(true, null);
                 case NETWORK_FAILURE:
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
@@ -163,18 +162,19 @@ public class LoginActivity extends ActionBarActivity {
                             Toast.makeText(LoginActivity.this, R.string.network_failure_toast, Toast.LENGTH_SHORT).show();
                         }
                     });
-                    return false;
+                    return new LoginResult(false, "Failed to connect to network");
                 default:
-                    return false;
+                    return new LoginResult(false, "App error");
             }
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final Object rawResult) {
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
+            LoginResult result = (LoginResult) rawResult;
+            if (result.success) {
                 Intent intent = new Intent(LoginActivity.this, GradebookActivity.class);
                 startActivity(intent);
             } else {
@@ -187,6 +187,16 @@ public class LoginActivity extends ActionBarActivity {
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+
+        class LoginResult {
+            boolean success;
+            String message;
+
+            LoginResult(boolean success, String message) {
+                this.success = success;
+                this.message = message;
+            }
         }
     }
 }
