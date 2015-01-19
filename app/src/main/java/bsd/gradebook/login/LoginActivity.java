@@ -151,7 +151,7 @@ public class LoginActivity extends ActionBarActivity {
 
             switch (state) {
                 case BAD_CREDS:
-                    return new LoginResult(false, "Invalid credentials");
+                    return new LoginResult(false, getResources().getString(R.string.error_bad_creds));
                 case SUCCESS:
                     ApplicationWrapper.getInstance().getSharedPrefs().edit().putString(Constants.USERNAME, mUsername).putString(Constants.PASSWORD, mPassword).commit();
                     return new LoginResult(true, null);
@@ -159,12 +159,12 @@ public class LoginActivity extends ActionBarActivity {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(LoginActivity.this, R.string.network_failure_toast, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.error_network_failure, Toast.LENGTH_SHORT).show();
                         }
                     });
-                    return new LoginResult(false, "Failed to connect to network");
+                    return new LoginResult(false, getResources().getString(R.string.error_network_failure));
                 default:
-                    return new LoginResult(false, "App error");
+                    return new LoginResult(false, getResources().getString(R.string.error_unknown));
             }
         }
 
@@ -178,7 +178,7 @@ public class LoginActivity extends ActionBarActivity {
                 Intent intent = new Intent(LoginActivity.this, GradebookActivity.class);
                 startActivity(intent);
             } else {
-                mPasswordView.setError(getString(R.string.error_invalid_creds));
+                mPasswordView.setError(getString(R.string.error_bad_creds));
                 mPasswordView.requestFocus();
             }
         }
@@ -200,6 +200,3 @@ public class LoginActivity extends ActionBarActivity {
         }
     }
 }
-
-
-

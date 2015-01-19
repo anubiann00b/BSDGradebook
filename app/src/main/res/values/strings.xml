@@ -2,12 +2,21 @@
 <resources>
 
     <string name="app_name">BSD Gradebook</string>
+
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello World!</string>
+
     <string name="title_activity_gradebook">GradebookActivity</string>
+
     <string name="first_semester">First Semester</string>
     <string name="second_semester">Second Semester</string>
-    <string name="network_failure_toast">Failed to connect to network.</string>
-    <string name="bad_creds_toast">Invalid credentials</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Log in</string>
+    <string name="action_sign_in_short">Log in</string>
+
+    <string name="error_network_failure">Failed to connect to network</string>
+    <string name="error_bad_creds">Invalid credentials</string>
+    <string name="error_unknown">App failure</string>
+    <string name="error_field_required">This field is required</string>
 </resources>
