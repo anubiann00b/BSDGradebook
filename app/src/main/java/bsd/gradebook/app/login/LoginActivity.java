@@ -1,4 +1,4 @@
-package bsd.gradebook;
+package bsd.gradebook.app.login;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import bsd.gradebook.ApplicationWrapper;
+import bsd.gradebook.app.gradebook.GradebookActivity;
+import bsd.gradebook.R;
+import bsd.gradebook.util.Constants;
 
 
 /**

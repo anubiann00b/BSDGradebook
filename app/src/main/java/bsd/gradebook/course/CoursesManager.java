@@ -1,4 +1,4 @@
-package bsd.gradebook;
+package bsd.gradebook.course;
 
 import android.util.Log;
 
@@ -7,6 +7,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import bsd.gradebook.app.login.ConnectionManager;
 
 public class CoursesManager {
 

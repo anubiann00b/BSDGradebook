@@ -1,4 +1,4 @@
-package bsd.gradebook.fragment;
+package bsd.gradebook.app.gradebook.fragment;
 
 
 import android.content.Context;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 import org.json.JSONException;
 
 import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.Course;
-import bsd.gradebook.CoursesManager;
+import bsd.gradebook.course.Course;
+import bsd.gradebook.course.CoursesManager;
 import bsd.gradebook.R;
 
 public class ClassFragment extends DialogFragment {
@@ -35,7 +35,8 @@ public class ClassFragment extends DialogFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NORMAL, 0);
+        int styleNormal = DialogFragment.STYLE_NORMAL;
+        setStyle(styleNormal, 0);
     }
 
     @Override

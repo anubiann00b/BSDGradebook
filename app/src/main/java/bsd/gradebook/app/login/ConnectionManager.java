@@ -1,4 +1,4 @@
-package bsd.gradebook;
+package bsd.gradebook.app.login;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

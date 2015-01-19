@@ -1,4 +1,4 @@
-package bsd.gradebook;
+package bsd.gradebook.course;
 
 import org.json.JSONException;
 import org.json.JSONObject;

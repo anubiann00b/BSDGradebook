@@ -1,4 +1,4 @@
-package bsd.gradebook.fragment;
+package bsd.gradebook.app.gradebook.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

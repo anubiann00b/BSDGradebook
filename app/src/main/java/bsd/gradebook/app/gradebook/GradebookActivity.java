@@ -1,4 +1,4 @@
-package bsd.gradebook;
+package bsd.gradebook.app.gradebook;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,9 +13,10 @@ import android.view.MenuItem;
 
 import java.util.Locale;
 
-import bsd.gradebook.fragment.GradeViewFragment;
-import bsd.gradebook.fragment.GraphFragment;
-import bsd.gradebook.fragment.HomeFragment;
+import bsd.gradebook.R;
+import bsd.gradebook.app.gradebook.fragment.GradeViewFragment;
+import bsd.gradebook.app.gradebook.fragment.GraphFragment;
+import bsd.gradebook.app.gradebook.fragment.HomeFragment;
 
 
 public class GradebookActivity extends ActionBarActivity implements ActionBar.TabListener {
