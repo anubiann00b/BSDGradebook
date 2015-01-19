@@ -1,4 +1,4 @@
-package bsd.gradebook.app.gradebook.fragment;
+package bsd.gradebook.app.gradebook;
 
 
 import android.content.Context;
@@ -22,7 +22,10 @@ import bsd.gradebook.R;
 public class ClassFragment extends DialogFragment {
 
     public static final String COURSE_INDEX = "COURSE_INDEX";
-    public static final String SEMESTER_ONE = "SEMESTER_ONE";
+
+    public static final String SEMESTER = "SEMESTER";
+    public static final boolean SEMESTER_ONE = true;
+    public static final boolean SEMESTER_TWO = false;
 
     Course course;
 
@@ -30,7 +33,7 @@ public class ClassFragment extends DialogFragment {
     }
 
     public void setArguments(Bundle args) {
-        course = CoursesManager.getInstance().getSemester(args.getBoolean(SEMESTER_ONE, true)).get(args.getInt(COURSE_INDEX));
+        course = CoursesManager.getInstance().getSemester(args.getBoolean(SEMESTER, true)).get(args.getInt(COURSE_INDEX));
     }
 
     public void onCreate(Bundle savedInstanceState) {

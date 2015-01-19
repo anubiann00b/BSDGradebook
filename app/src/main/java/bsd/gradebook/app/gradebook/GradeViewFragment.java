@@ -1,4 +1,4 @@
-package bsd.gradebook.app.gradebook.fragment;
+package bsd.gradebook.app.gradebook;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.app.gradebook.GradesViewAdapter;
 import bsd.gradebook.course.CoursesManager;
 import bsd.gradebook.R;
 
@@ -19,14 +18,17 @@ import bsd.gradebook.R;
  */
 public class GradeViewFragment extends Fragment {
 
-    public static final String FIRST_SEMESTER = "FIRST_SEMESTER";
+    public static final String SEMESTER = "SEMESTER";
+    public static final boolean SEMESTER_ONE = true;
+    public static final boolean SEMESTER_TWO = false;
+
     boolean firstSemester = true;
 
     public GradeViewFragment() {
     }
 
     public void setArguments(Bundle args) {
-        firstSemester = args.getBoolean(FIRST_SEMESTER, true);
+        firstSemester = args.getBoolean(SEMESTER, SEMESTER_ONE);
     }
 
     @Override

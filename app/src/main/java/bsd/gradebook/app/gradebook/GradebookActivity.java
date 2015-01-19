@@ -8,15 +8,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.Locale;
 
 import bsd.gradebook.R;
-import bsd.gradebook.app.gradebook.fragment.GradeViewFragment;
-import bsd.gradebook.app.gradebook.fragment.GraphFragment;
-import bsd.gradebook.app.gradebook.fragment.HomeFragment;
 
 
 public class GradebookActivity extends ActionBarActivity implements ActionBar.TabListener {
@@ -113,25 +111,26 @@ public class GradebookActivity extends ActionBarActivity implements ActionBar.Ta
 
         @Override
         public Fragment getItem(int position) {
+            Bundle args = new Bundle();
             switch (position) {
                 case 0:
-                    return new HomeFragment();
+                    args.putBoolean(GradeViewFragment.SEMESTER, true);
+                    break;
                 case 1:
-                    Bundle args = new Bundle();
-                    args.putBoolean(GradeViewFragment.FIRST_SEMESTER, true);
-                    GradeViewFragment gradeFrag = new GradeViewFragment();
-                    gradeFrag.setArguments(args);
-                    return gradeFrag;
-                case 2:
-                    return new GraphFragment();
+                    args.putBoolean(GradeViewFragment.SEMESTER, false);
+                    break;
                 default:
-                    return null;
+                    Log.e("APP ERROR", "UNHANDLED CASE IN GRADEBOOKACTIVITY");
+                    break;
             }
+            GradeViewFragment gradeFrag = new GradeViewFragment();
+            gradeFrag.setArguments(args);
+            return gradeFrag;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -139,11 +138,9 @@ public class GradebookActivity extends ActionBarActivity implements ActionBar.Ta
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                    return getString(R.string.first_semester).toUpperCase(l);
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                    return getString(R.string.second_semester).toUpperCase(l);
             }
             return null;
         }

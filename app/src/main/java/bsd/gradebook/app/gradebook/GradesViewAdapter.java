@@ -17,7 +17,6 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bsd.gradebook.app.gradebook.fragment.ClassFragment;
 import bsd.gradebook.course.Course;
 import bsd.gradebook.R;
 
@@ -38,13 +37,13 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
     RecyclerView recyclerView;
     private Fragment parentFragment;
 
-    boolean semesterOne;
+    boolean semester;
 
-    public GradesViewAdapter(List<Course> data, RecyclerView recyclerView, Fragment parentFragment, boolean semesterOne) {
+    public GradesViewAdapter(List<Course> data, RecyclerView recyclerView, Fragment parentFragment, boolean semester) {
         this.data = data;
         this.recyclerView = recyclerView;
         this.parentFragment = parentFragment;
-        this.semesterOne = semesterOne;
+        this.semester = semester;
     }
 
     @Override
@@ -80,7 +79,7 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
             DialogFragment newFragment = new ClassFragment();
             Bundle args = new Bundle();
             args.putInt(ClassFragment.COURSE_INDEX, course.getPeriod()-1);
-            args.putBoolean(ClassFragment.SEMESTER_ONE, semesterOne);
+            args.putBoolean(ClassFragment.SEMESTER, semester);
             newFragment.setArguments(args);
 
 
