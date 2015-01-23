@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Course {
@@ -55,6 +56,7 @@ public class Course {
                 assignments.add(new Assignment(assignment.getString("name"), assignment.getString("date"),
                         assignment.getString("grade"), assignment.getString("max")));
             }
+            Collections.reverse(assignments);
             return assignments;
         } catch (JSONException e) {
             e.printStackTrace();

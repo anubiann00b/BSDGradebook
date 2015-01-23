@@ -1,17 +1,13 @@
 package bsd.gradebook.gradebook;
 
 
-import android.content.Context;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import bsd.gradebook.ApplicationWrapper;
 import bsd.gradebook.R;
@@ -35,10 +31,16 @@ public class ClassFragment extends DialogFragment {
         course = CoursesManager.getInstance().getSemester(args.getBoolean(SEMESTER, true)).get(args.getInt(COURSE_INDEX));
     }
 
+    @Override
+    public void onActivityCreated(Bundle args) {
+        super.onActivityCreated(args);
+        getDialog().getWindow()
+                .getAttributes().windowAnimations = R.style.DialogAnimation;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int styleNormal = DialogFragment.STYLE_NORMAL;
-        setStyle(styleNormal, 0);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_AppTheme);
     }
 
     @Override
@@ -54,12 +56,6 @@ public class ClassFragment extends DialogFragment {
 
     public void onResume() {
         super.onResume();
-        WindowManager wm = (WindowManager) ApplicationWrapper.getInstance().getSystemService(Context.WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = (int) (size.x * 0.9);
-        int height = (int) (size.y * 0.9);
-        getDialog().getWindow().setLayout(width, height);
+
     }
 }
