@@ -14,6 +14,7 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Log in</string>
     <string name="action_sign_in_short">Log in</string>
+    <string name="autologin_text">Automatically log in</string>
 
     <string name="error_network_failure">Failed to connect to network</string>
     <string name="error_bad_creds">Invalid credentials</string>

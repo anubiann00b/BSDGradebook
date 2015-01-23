@@ -26,14 +26,18 @@
                 android:imeOptions="actionUnspecified" android:inputType="textPassword"
                 android:maxLines="1" android:singleLine="true" />
 
+            <CheckBox android:id="@+id/autologin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/autologin_text" />
+
             <Button android:id="@+id/email_sign_in_button"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="16dp" android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
-            <!-- Login progress -->
-            <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
+            <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLargeInverse"
                 android:layout_width="fill_parent" android:layout_height="fill_parent"
                 android:layout_marginBottom="8dp" android:visibility="invisible" />
         </LinearLayout>

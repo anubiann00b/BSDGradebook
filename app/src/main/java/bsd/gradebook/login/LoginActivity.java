@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,25 +23,16 @@ import bsd.gradebook.R;
 import bsd.gradebook.gradebook.GradebookActivity;
 import bsd.gradebook.util.Constants;
 
-
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends ActionBarActivity {
 
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
     private UserLoginTask mAuthTask = null;
 
-    // UI references.
     private EditText mUsernameView;
     private EditText mPasswordView;
     private View mProgressView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
     }
@@ -50,7 +42,9 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Set up the login form.
+        final CheckBox mAutoLoginView = (CheckBox) findViewById(R.id.autologin);
+        mAutoLoginView.setChecked(ApplicationWrapper.getInstance().getSharedPrefs().getBoolean(Constants.AUTOLOGIN, false));
+
         mUsernameView = (EditText) findViewById(R.id.email);
         mUsernameView.setText(ApplicationWrapper.getInstance().getSharedPrefs().getString(Constants.USERNAME, ""));
 
@@ -60,7 +54,7 @@ public class LoginActivity extends ActionBarActivity {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptLogin(mAutoLoginView.isChecked());
                     return true;
                 }
                 return false;
@@ -71,19 +65,17 @@ public class LoginActivity extends ActionBarActivity {
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptLogin(mAutoLoginView.isChecked());
             }
         });
 
         mProgressView = findViewById(R.id.login_progress);
+
+        if (ApplicationWrapper.getInstance().getSharedPrefs().getBoolean(Constants.AUTOLOGIN, false))
+            attemptLogin(true);
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid username, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    public void attemptLogin() {
+    public void attemptLogin(boolean autologin) {
         if (mAuthTask != null) {
             return;
         }
@@ -122,7 +114,7 @@ public class LoginActivity extends ActionBarActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(username, password);
+            mAuthTask = new UserLoginTask(username, password, autologin);
             mAuthTask.execute((Void) null);
         }
     }
@@ -139,10 +131,12 @@ public class LoginActivity extends ActionBarActivity {
 
         private final String mUsername;
         private final String mPassword;
+        private final boolean mAutologin;
 
-        UserLoginTask(String username, String password) {
+        UserLoginTask(String username, String password, boolean autologin) {
             mUsername = username;
             mPassword = password;
+            mAutologin = autologin;
         }
 
         @Override
@@ -153,7 +147,10 @@ public class LoginActivity extends ActionBarActivity {
                 case BAD_CREDS:
                     return new LoginResult(false, getResources().getString(R.string.error_bad_creds));
                 case SUCCESS:
-                    ApplicationWrapper.getInstance().getSharedPrefs().edit().putString(Constants.USERNAME, mUsername).putString(Constants.PASSWORD, mPassword).commit();
+                    ApplicationWrapper.getInstance().getSharedPrefs().edit()
+                            .putString(Constants.USERNAME, mUsername)
+                            .putString(Constants.PASSWORD, mPassword)
+                            .putBoolean(Constants.AUTOLOGIN, mAutologin).commit();
                     return new LoginResult(true, null);
                 case NETWORK_FAILURE:
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
