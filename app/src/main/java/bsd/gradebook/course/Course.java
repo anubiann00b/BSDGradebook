@@ -1,9 +1,12 @@
 package bsd.gradebook.course;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -53,8 +56,26 @@ public class Course {
             List<Assignment> assignments = new ArrayList<>();
             for (int i=0;i<classes.length();i++) {
                 JSONObject assignment = classes.getJSONObject(i);
+
+                String max = assignment.getString("max");
+                String maxStr = max.substring(0, max.indexOf('.'));
+                String gradeStr = assignment.getString("grade");
+
+                try {
+                    double gradeNum = Double.parseDouble(gradeStr);
+                    int maxNum = Integer.parseInt(maxStr);
+
+                    double score = gradeNum/maxNum;
+                    DecimalFormat format = new DecimalFormat("00.00%");
+                    String scoreStr = format.format(score);
+
+                    gradeStr = scoreStr;
+                } catch (NumberFormatException e) {
+                    Log.d("NUMBER FORMAT", e.toString());
+                }
+
                 assignments.add(new Assignment(assignment.getString("name"), assignment.getString("date"),
-                        assignment.getString("grade"), assignment.getString("max")));
+                        gradeStr, maxStr));
             }
             Collections.reverse(assignments);
             return assignments;
@@ -85,13 +106,13 @@ public class Course {
         public final String name;
         public final String date;
         public final String grade;
-        public final String max;
+        public final String points;
 
-        public Assignment(String name, String date, String grade, String max) {
+        public Assignment(String name, String date, String grade, String points) {
             this.name = name;
             this.date = date;
             this.grade = grade;
-            this.max = max;
+            this.points = points;
         }
     }
 }
