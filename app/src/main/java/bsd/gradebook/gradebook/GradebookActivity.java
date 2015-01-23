@@ -113,16 +113,16 @@ public class GradebookActivity extends ActionBarActivity implements ActionBar.Ta
             Bundle args = new Bundle();
             switch (position) {
                 case 0:
-                    args.putBoolean(GradeViewFragment.SEMESTER, true);
+                    args.putBoolean(GradebookFragment.SEMESTER, true);
                     break;
                 case 1:
-                    args.putBoolean(GradeViewFragment.SEMESTER, false);
+                    args.putBoolean(GradebookFragment.SEMESTER, false);
                     break;
                 default:
                     Log.e("APP ERROR", "UNHANDLED CASE IN GRADEBOOKACTIVITY");
                     break;
             }
-            GradeViewFragment gradeFrag = new GradeViewFragment();
+            GradebookFragment gradeFrag = new GradebookFragment();
             gradeFrag.setArguments(args);
             return gradeFrag;
         }

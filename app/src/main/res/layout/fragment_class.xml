@@ -1,9 +1,14 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:layout_height="fill_parent" tools:context="bsd.gradebook.gradebook.ClassFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:paddingTop="4dp"
+    tools:context="bsd.gradebook.gradebook.ClassFragment">
 
-    <TextView android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:id="@+id/class_text_view"
-        android:text="Hello World!" />
+    <android.support.v7.widget.RecyclerView android:id="@+id/class_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

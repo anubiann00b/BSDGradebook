@@ -5,14 +5,13 @@ import android.content.Context;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
-
-import org.json.JSONException;
 
 import bsd.gradebook.ApplicationWrapper;
 import bsd.gradebook.R;
@@ -46,12 +45,9 @@ public class ClassFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_class, container, false);
 
-        TextView text = (TextView) rootView.findViewById(R.id.class_text_view);
-        try {
-            text.setText(course.getCourseName());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.class_list_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
+        recyclerView.setAdapter(new ClassAdapter(course.getAssignments(), recyclerView, this));
 
         return rootView;
     }

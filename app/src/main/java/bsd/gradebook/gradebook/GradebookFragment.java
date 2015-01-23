@@ -16,7 +16,7 @@ import bsd.gradebook.course.CoursesManager;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GradeViewFragment extends Fragment {
+public class GradebookFragment extends Fragment {
 
     public static final String SEMESTER = "SEMESTER";
     public static final boolean SEMESTER_ONE = true;
@@ -24,7 +24,7 @@ public class GradeViewFragment extends Fragment {
 
     boolean firstSemester = true;
 
-    public GradeViewFragment() {
+    public GradebookFragment() {
     }
 
     public void setArguments(Bundle args) {
@@ -39,7 +39,7 @@ public class GradeViewFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
 
         CoursesManager.getInstance().initialize();
-        recyclerView.setAdapter(new GradesViewAdapter(CoursesManager.getInstance().getSemester(firstSemester), recyclerView, this, firstSemester));
+        recyclerView.setAdapter(new GradebookAdapter(CoursesManager.getInstance().getSemester(firstSemester), recyclerView, this, firstSemester));
 
         return rootView;
     }

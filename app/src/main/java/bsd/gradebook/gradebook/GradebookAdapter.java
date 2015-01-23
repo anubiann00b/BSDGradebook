@@ -20,7 +20,7 @@ import java.util.List;
 import bsd.gradebook.R;
 import bsd.gradebook.course.Course;
 
-public class GradesViewAdapter extends RecyclerView.Adapter {
+public class GradebookAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -39,7 +39,7 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
 
     boolean semester;
 
-    public GradesViewAdapter(List<Course> data, RecyclerView recyclerView, Fragment parentFragment, boolean semester) {
+    public GradebookAdapter(List<Course> data, RecyclerView recyclerView, Fragment parentFragment, boolean semester) {
         this.data = data;
         this.recyclerView = recyclerView;
         this.parentFragment = parentFragment;
@@ -47,8 +47,8 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public GradesViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_row, parent, false);
+    public GradebookAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gradebook_card, parent, false);
         view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }
@@ -56,9 +56,9 @@ public class GradesViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         try {
-            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_class)).setText(data.get(position).getCourseName());
-            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_grade)).setText(data.get(position).getGrade().grade);
-            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_grade_letter)).setText(data.get(position).getGrade().letterGrade);
+            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.gradebook_row_class)).setText(data.get(position).getCourseName());
+            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.gradebook_row_grade)).setText(data.get(position).getGrade().grade);
+            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.gradebook_row_grade_letter)).setText(data.get(position).getGrade().letterGrade);
         } catch (JSONException e) {
             e.printStackTrace();
         }
