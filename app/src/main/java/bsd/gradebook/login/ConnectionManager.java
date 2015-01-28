@@ -18,7 +18,7 @@ public class ConnectionManager {
     public static JSONObject cache;
 
     enum Response {
-        SUCCESS, BAD_CREDS, NETWORK_FAILURE;
+        SUCCESS, BAD_CREDS, NETWORK_FAILURE
     }
 
     public static Response makeConnection(Context context, final String url) {
@@ -38,8 +38,8 @@ public class ConnectionManager {
     private static Response downloadUrl(String urlString) throws IOException {
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(10000);
-        conn.setConnectTimeout(15000);
+        conn.setReadTimeout(20000);
+        conn.setConnectTimeout(25000);
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
         conn.connect();

@@ -67,7 +67,7 @@ public class Course {
 
                     double score = gradeNum/maxNum;
                     DecimalFormat format = new DecimalFormat("##0.00");
-                    String scoreStr = format.format(score*1000);
+                    String scoreStr = format.format(score*100);
 
                     gradeStr = scoreStr;
                 } catch (NumberFormatException e) {
