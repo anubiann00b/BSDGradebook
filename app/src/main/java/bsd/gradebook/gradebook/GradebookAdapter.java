@@ -57,7 +57,7 @@ public class GradebookAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         try {
             ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_assignment)).setText(data.get(position).getCourseName());
-            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_grade)).setText(data.get(position).getGrade().grade);
+            ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_percent)).setText(data.get(position).getGrade().grade);
             ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_points)).setText(data.get(position).getGrade().letterGrade);
         } catch (JSONException e) {
             e.printStackTrace();

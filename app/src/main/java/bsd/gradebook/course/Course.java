@@ -60,22 +60,21 @@ public class Course {
                 String max = assignment.getString("max");
                 String maxStr = max.substring(0, max.indexOf('.'));
                 String gradeStr = assignment.getString("grade");
+                String scoreStr = gradeStr;
 
                 try {
                     double gradeNum = Double.parseDouble(gradeStr);
                     int maxNum = Integer.parseInt(maxStr);
 
                     double score = gradeNum/maxNum;
-                    DecimalFormat format = new DecimalFormat("##0.00");
-                    String scoreStr = format.format(score*100);
-
-                    gradeStr = scoreStr;
+                    DecimalFormat format = new DecimalFormat("##0");
+                    scoreStr = format.format(score*100);
                 } catch (NumberFormatException e) {
                     Log.d("NUMBER FORMAT", e.toString());
                 }
 
                 assignments.add(new Assignment(assignment.getString("name"), assignment.getString("date"),
-                        gradeStr, maxStr));
+                        scoreStr, gradeStr, "/" + maxStr));
             }
             Collections.reverse(assignments);
             return assignments;
@@ -105,14 +104,16 @@ public class Course {
 
         public final String name;
         public final String date;
+        public final String percent;
         public final String grade;
-        public final String points;
+        public final String maxPoints;
 
-        public Assignment(String name, String date, String grade, String points) {
+        public Assignment(String name, String date, String percent, String grade, String maxPoints) {
             this.name = name;
             this.date = date;
+            this.percent = percent;
             this.grade = grade;
-            this.points = points;
+            this.maxPoints = maxPoints;
         }
     }
 }

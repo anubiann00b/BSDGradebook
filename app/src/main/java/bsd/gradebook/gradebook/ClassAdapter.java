@@ -48,9 +48,10 @@ public class ClassAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_assignment)).setText(data.get(position).name);
-        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_grade)).setText(data.get(position).grade);
-        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.class_row_points)).setText(data.get(position).points);
+        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.assignment_row_assignment)).setText(data.get(position).name);
+        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.assignment_row_percent)).setText(data.get(position).percent);
+        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.assignment_row_grade)).setText(data.get(position).grade);
+        ((TextView)((ViewHolder)holder).mCardView.findViewById(R.id.assignment_row_points)).setText(data.get(position).maxPoints);
     }
 
     @Override

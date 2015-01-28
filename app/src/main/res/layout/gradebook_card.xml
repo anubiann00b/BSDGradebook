@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="Class" />
         <TextView
-            android:id="@+id/class_row_grade"
+            android:id="@+id/class_row_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
