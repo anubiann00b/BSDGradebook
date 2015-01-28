@@ -1,6 +1,7 @@
 package bsd.gradebook.login;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -35,6 +37,21 @@ public class LoginActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_send_feedback) {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto", "skraman1999@gmail.com", null));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Gradebook App Feedback");
+            startActivity(Intent.createChooser(emailIntent, "Send feedback"));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
