@@ -24,7 +24,7 @@ public class Course {
     }
 
     public Grade getGrade() throws JSONException {
-        return new Grade(classRoot.getJSONObject("firstSemester").getString("grade"));
+        return new Grade(classRoot.getJSONObject(isFirstSemester()?"firstSemester":"secondSemester").getString("grade"));
     }
 
     public int getPeriod() {
