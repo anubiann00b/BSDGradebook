@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import bsd.gradebook.ApplicationWrapper;
@@ -37,6 +39,11 @@ public class ClassAdapter extends RecyclerView.Adapter {
         this.data = data;
         this.recyclerView = recyclerView;
         this.parentFragment = parentFragment;
+    }
+
+    public void sort(Comparator<Course.Assignment> assignmentComparator) {
+        Collections.sort(data, assignmentComparator);
+        this.notifyDataSetChanged();
     }
 
     @Override

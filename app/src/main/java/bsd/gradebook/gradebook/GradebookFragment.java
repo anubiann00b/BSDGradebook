@@ -12,10 +12,6 @@ import bsd.gradebook.ApplicationWrapper;
 import bsd.gradebook.R;
 import bsd.gradebook.course.CoursesManager;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class GradebookFragment extends Fragment {
 
     public static final String SEMESTER = "SEMESTER";

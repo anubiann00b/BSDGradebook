@@ -8,9 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import bsd.gradebook.ApplicationWrapper;
 import bsd.gradebook.R;
+import bsd.gradebook.course.AssignmentSorter;
 import bsd.gradebook.course.Course;
 import bsd.gradebook.course.CoursesManager;
 
@@ -23,6 +25,7 @@ public class ClassFragment extends DialogFragment {
     public static final boolean SEMESTER_TWO = false;
 
     Course course;
+    private ClassAdapter classAdapter;
 
     public ClassFragment() {
     }
@@ -49,7 +52,16 @@ public class ClassFragment extends DialogFragment {
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.class_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
-        recyclerView.setAdapter(new ClassAdapter(course.getAssignments(), recyclerView, this));
+        classAdapter = new ClassAdapter(course.getAssignments(), recyclerView, this);
+        recyclerView.setAdapter(classAdapter);
+
+        ImageButton sortByName = (ImageButton) rootView.findViewById(R.id.button_sort_name);
+        sortByName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classAdapter.sort(AssignmentSorter.AlphabeticalAssignmentSorter.getInstance());
+            }
+        });
 
         return rootView;
     }
