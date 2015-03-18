@@ -2,7 +2,8 @@ package bsd.gradebook;
 
 import android.app.Application;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import com.securepreferences.SecurePreferences;
 
 public class ApplicationWrapper extends Application {
 
@@ -15,7 +16,10 @@ public class ApplicationWrapper extends Application {
         instance = this;
     }
 
+    private static SharedPreferences sharedPrefs;
     public SharedPreferences getSharedPrefs() {
-        return PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPrefs == null)
+            sharedPrefs = new SecurePreferences(this);
+        return sharedPrefs;
     }
 }
