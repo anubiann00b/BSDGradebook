@@ -1,28 +1,23 @@
 package me.shreyasr.bsdgradebook.gradebook;
 
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import me.shreyasr.bsdgradebook.ApplicationWrapper;
 import me.shreyasr.bsdgradebook.R;
 import me.shreyasr.bsdgradebook.course.Course;
 
-public class ClassAdapter extends RecyclerView.Adapter {
+class ClassAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public CardView mCardView;
+        public final CardView mCardView;
 
         public ViewHolder(View v) {
             super(v);
@@ -30,20 +25,11 @@ public class ClassAdapter extends RecyclerView.Adapter {
         }
     }
 
-    List<Course.Assignment> data = new ArrayList<>();
-    final View.OnClickListener onClickListener = new OnClassClickListener();
-    RecyclerView recyclerView;
-    private Fragment parentFragment;
+    private List<Course.Assignment> data = new ArrayList<>();
+    private final View.OnClickListener onClickListener = new OnClassClickListener();
 
-    public ClassAdapter(List<Course.Assignment> data, RecyclerView recyclerView, Fragment parentFragment) {
+    public ClassAdapter(List<Course.Assignment> data) {
         this.data = data;
-        this.recyclerView = recyclerView;
-        this.parentFragment = parentFragment;
-    }
-
-    public void sort(Comparator<Course.Assignment> assignmentComparator) {
-        Collections.sort(data, assignmentComparator);
-        this.notifyDataSetChanged();
     }
 
     @Override
@@ -72,7 +58,7 @@ public class ClassAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(final View view) {
-            Toast.makeText(ApplicationWrapper.getInstance(), "Clicked row", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(ApplicationWrapper.getInstance(), "Clicked row", Toast.LENGTH_SHORT).show();
         }
     }
 }

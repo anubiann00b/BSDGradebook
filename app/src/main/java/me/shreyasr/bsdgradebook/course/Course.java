@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Course {
 
-    JSONObject classRoot;
+    private final JSONObject classRoot;
 
     public Course(JSONObject classRoot) {
         this.classRoot = classRoot;
@@ -38,7 +38,7 @@ public class Course {
 
     public boolean isFirstSemester() {
         try {
-            return !classRoot.getJSONObject("firstSemester").getString("grade").isEmpty();
+            return classRoot.getJSONObject("firstSemester").getString("grade").length() != 0;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -86,11 +86,11 @@ public class Course {
 
     public class Grade {
 
-        public String grade;
-        public String letterGrade;
+        public final String grade;
+        public final String letterGrade;
 
         public Grade(String gradeString) {
-            if (gradeString.isEmpty()) {
+            if (gradeString.length() == 0) {
                 grade = "";
                 letterGrade = "";
             } else {

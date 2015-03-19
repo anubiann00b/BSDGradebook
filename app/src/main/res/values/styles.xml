@@ -16,4 +16,8 @@
         <item name="android:windowEnterAnimation">@anim/class_in</item>
         <item name="android:windowExitAnimation">@anim/class_out</item>
     </style>
+    
+    <style name="BorderlessButtonCustom" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
 </resources>

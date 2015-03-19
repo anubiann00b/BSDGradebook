@@ -20,8 +20,8 @@ import me.shreyasr.bsdgradebook.R;
 
 public class GradebookActivity extends ActionBarActivity implements ActionBar.TabListener {
 
-    SectionsPagerAdapter mSectionsPagerAdapter;
-    ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

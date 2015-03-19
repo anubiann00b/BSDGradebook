@@ -15,10 +15,10 @@ import me.shreyasr.bsdgradebook.course.CoursesManager;
 public class GradebookFragment extends Fragment {
 
     public static final String SEMESTER = "SEMESTER";
-    public static final boolean SEMESTER_ONE = true;
+    private static final boolean SEMESTER_ONE = true;
     public static final boolean SEMESTER_TWO = false;
 
-    boolean firstSemester = true;
+    private boolean firstSemester = true;
 
     public GradebookFragment() {
     }

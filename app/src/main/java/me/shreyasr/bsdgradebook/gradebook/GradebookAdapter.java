@@ -24,7 +24,7 @@ public class GradebookAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public CardView mCardView;
+        public final CardView mCardView;
 
         public ViewHolder(View v) {
             super(v);
@@ -32,12 +32,12 @@ public class GradebookAdapter extends RecyclerView.Adapter {
         }
     }
 
-    List<Course> data = new ArrayList<>();
-    final View.OnClickListener onClickListener = new OnGradeClickListener();
-    RecyclerView recyclerView;
-    private Fragment parentFragment;
+    private List<Course> data = new ArrayList<>();
+    private final View.OnClickListener onClickListener = new OnGradeClickListener();
+    private final RecyclerView recyclerView;
+    private final Fragment parentFragment;
 
-    boolean semester;
+    private final boolean semester;
 
     public GradebookAdapter(List<Course> data, RecyclerView recyclerView, Fragment parentFragment, boolean semester) {
         this.data = data;

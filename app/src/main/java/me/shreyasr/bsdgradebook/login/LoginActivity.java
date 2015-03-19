@@ -92,7 +92,7 @@ public class LoginActivity extends ActionBarActivity {
             attemptLogin(true);
     }
 
-    public void attemptLogin(boolean autologin) {
+    void attemptLogin(boolean autologin) {
         if (mAuthTask != null) {
             return;
         }
@@ -136,7 +136,7 @@ public class LoginActivity extends ActionBarActivity {
         }
     }
 
-    public void showProgress(final boolean show) {
+    void showProgress(final boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
@@ -204,8 +204,8 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         class LoginResult {
-            boolean success;
-            String message;
+            final boolean success;
+            final String message;
 
             LoginResult(boolean success, String message) {
                 this.success = success;

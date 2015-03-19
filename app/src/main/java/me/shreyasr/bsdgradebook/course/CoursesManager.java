@@ -18,7 +18,7 @@ public class CoursesManager {
         return cm;
     }
 
-    List<Course> classes;
+    private List<Course> classes;
 
     public void initialize() {
         if (classes != null)
@@ -35,7 +35,7 @@ public class CoursesManager {
         }
     }
 
-    public List<Course> getSemesterOne() {
+    List<Course> getSemesterOne() {
         List<Course> semesterOneCourses = new ArrayList<>();
         for (Course c : classes) {
             if (c.isFirstSemester())
@@ -44,7 +44,7 @@ public class CoursesManager {
         return semesterOneCourses;
     }
 
-    public List<Course> getSemesterTwo() {
+    List<Course> getSemesterTwo() {
         List<Course> semesterTwoCourses = new ArrayList<>();
         for (Course c : classes) {
             if (c.isSecondSemester())

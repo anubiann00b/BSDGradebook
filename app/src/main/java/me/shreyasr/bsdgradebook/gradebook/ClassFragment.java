@@ -19,14 +19,8 @@ public class ClassFragment extends DialogFragment {
     public static final String COURSE_INDEX = "COURSE_INDEX";
 
     public static final String SEMESTER = "SEMESTER";
-    public static final boolean SEMESTER_ONE = true;
-    public static final boolean SEMESTER_TWO = false;
 
-    Course course;
-    private ClassAdapter classAdapter;
-
-    public ClassFragment() {
-    }
+    private Course course;
 
     public void setArguments(Bundle args) {
         course = CoursesManager.getInstance().getSemester(args.getBoolean(SEMESTER, true)).get(args.getInt(COURSE_INDEX));
@@ -50,14 +44,9 @@ public class ClassFragment extends DialogFragment {
 
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.class_list_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(ApplicationWrapper.getInstance()));
-        classAdapter = new ClassAdapter(course.getAssignments(), recyclerView, this);
+        ClassAdapter classAdapter = new ClassAdapter(course.getAssignments());
         recyclerView.setAdapter(classAdapter);
 
         return rootView;
-    }
-
-    public void onResume() {
-        super.onResume();
-
     }
 }
