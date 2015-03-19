@@ -1,4 +1,4 @@
-package bsd.gradebook.gradebook;
+package me.shreyasr.bsdgradebook.gradebook;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.R;
-import bsd.gradebook.course.CoursesManager;
+import me.shreyasr.bsdgradebook.ApplicationWrapper;
+import me.shreyasr.bsdgradebook.R;
+import me.shreyasr.bsdgradebook.course.CoursesManager;
 
 public class GradebookFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package bsd.gradebook.course;
+package me.shreyasr.bsdgradebook.course;
 
 import java.util.Comparator;
 

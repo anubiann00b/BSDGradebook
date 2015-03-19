@@ -1,4 +1,4 @@
-package bsd.gradebook.login;
+package me.shreyasr.bsdgradebook.login;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -20,10 +20,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.R;
-import bsd.gradebook.gradebook.GradebookActivity;
-import bsd.gradebook.util.Constants;
+import me.shreyasr.bsdgradebook.ApplicationWrapper;
+import me.shreyasr.bsdgradebook.R;
+import me.shreyasr.bsdgradebook.gradebook.GradebookActivity;
+import me.shreyasr.bsdgradebook.util.Constants;
 
 public class LoginActivity extends ActionBarActivity {
 

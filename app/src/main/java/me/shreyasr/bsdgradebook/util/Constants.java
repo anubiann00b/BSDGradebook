@@ -1,4 +1,4 @@
-package bsd.gradebook.util;
+package me.shreyasr.bsdgradebook.util;
 
 public class Constants {
 

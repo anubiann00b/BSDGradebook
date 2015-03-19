@@ -1,4 +1,4 @@
-package bsd.gradebook.gradebook;
+package me.shreyasr.bsdgradebook.gradebook;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -17,8 +17,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bsd.gradebook.R;
-import bsd.gradebook.course.Course;
+import me.shreyasr.bsdgradebook.R;
+import me.shreyasr.bsdgradebook.course.Course;
 
 public class GradebookAdapter extends RecyclerView.Adapter {
 

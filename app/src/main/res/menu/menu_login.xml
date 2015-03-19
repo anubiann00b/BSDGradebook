@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
-tools:context="bsd.gradebook.login.LoginActivity">
+tools:context="me.shreyasr.bsdgradebook.login.LoginActivity">
 <item android:id="@+id/action_send_feedback" android:title="@string/action_feedback"
     android:orderInCategory="100" app:showAsAction="never" />
 </menu>

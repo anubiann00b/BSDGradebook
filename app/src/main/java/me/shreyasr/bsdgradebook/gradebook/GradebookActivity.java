@@ -1,4 +1,4 @@
-package bsd.gradebook.gradebook;
+package me.shreyasr.bsdgradebook.gradebook;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,7 +16,7 @@ import android.view.MenuItem;
 
 import java.util.Locale;
 
-import bsd.gradebook.R;
+import me.shreyasr.bsdgradebook.R;
 
 public class GradebookActivity extends ActionBarActivity implements ActionBar.TabListener {
 

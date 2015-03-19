@@ -4,7 +4,7 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:paddingTop="4dp"
-    tools:context="bsd.gradebook.gradebook.GradebookActivity$PlaceholderFragment">
+    tools:context="me.shreyasr.bsdgradebook.gradebook.GradebookActivity$PlaceholderFragment">
 
     <android.support.v7.widget.RecyclerView android:id="@+id/grades_list_view"
         android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package bsd.gradebook;
+package me.shreyasr.bsdgradebook;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

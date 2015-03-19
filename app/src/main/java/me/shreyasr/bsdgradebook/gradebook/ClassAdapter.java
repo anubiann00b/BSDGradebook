@@ -1,4 +1,4 @@
-package bsd.gradebook.gradebook;
+package me.shreyasr.bsdgradebook.gradebook;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -14,9 +14,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import bsd.gradebook.ApplicationWrapper;
-import bsd.gradebook.R;
-import bsd.gradebook.course.Course;
+import me.shreyasr.bsdgradebook.ApplicationWrapper;
+import me.shreyasr.bsdgradebook.R;
+import me.shreyasr.bsdgradebook.course.Course;
 
 public class ClassAdapter extends RecyclerView.Adapter {
 

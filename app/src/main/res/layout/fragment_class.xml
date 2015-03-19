@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="4dp"
-    tools:context="bsd.gradebook.gradebook.ClassFragment">
+    tools:context="me.shreyasr.bsdgradebook.gradebook.ClassFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/class_list_view"
